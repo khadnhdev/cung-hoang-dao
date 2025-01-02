@@ -26,13 +26,21 @@ const ZODIAC_SIGNS = [
 
 router.get('/', async (req, res) => {
   try {
-    const today = new Date().toISOString().split('T')[0];
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    const displayDate = today.toLocaleDateString('vi-VN', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
     const dailyPredictions = {};
 
     // Lấy dự đoán cho tất cả các cung
     for (const sign of ZODIAC_SIGNS) {
       try {
-        const prediction = await geminiService.getDailyHoroscope(sign, today);
+        const prediction = await geminiService.getDailyHoroscope(sign, formattedDate);
         dailyPredictions[sign] = prediction;
       } catch (error) {
         console.error(`Error getting prediction for ${sign}:`, error);
@@ -43,7 +51,8 @@ router.get('/', async (req, res) => {
     res.render('index', { 
       dailyPredictions,
       error: null,
-      getZodiacSymbol: (sign) => ZODIAC_SYMBOLS[sign] || '★'
+      getZodiacSymbol: (sign) => ZODIAC_SYMBOLS[sign] || '★',
+      displayDate
     });
   } catch (error) {
     console.error('Error getting daily predictions:', error);

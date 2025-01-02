@@ -771,4 +771,44 @@ form.loading {
     border-top: 2px solid transparent;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
+}
+
+/* Current Date Display */
+.current-date {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.current-date i {
+    color: var(--primary-light);
+}
+
+/* Capitalize first letter of weekday */
+.current-date::first-letter {
+    text-transform: uppercase;
+}
+
+/* Section Title with Date */
+.section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    font-size: 2rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-light), var(--secondary));
+    margin: 0.5rem auto;
+    border-radius: 2px;
 } 

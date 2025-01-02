@@ -44,7 +44,13 @@
         </header>
 
         <div id="daily" class="daily-horoscopes section">
-            <h2 class="section-title">Dự Đoán Hôm Nay</h2>
+            <h2 class="section-title">
+                Dự Đoán Hôm Nay
+                <div class="current-date">
+                    <i class="fas fa-calendar-day"></i>
+                    <%= displayDate %>
+                </div>
+            </h2>
             <div class="horoscope-grid">
                 <% Object.entries(dailyPredictions).forEach(([sign, prediction]) => { %>
                     <div class="horoscope-card fade-in">
@@ -174,7 +180,7 @@
                 </div>
             </div>
             <p class="copyright">
-                &copy; 2024 Astro AI. Made with <i class="fas fa-heart"></i> by <a href="#">Your Name</a>
+                &copy; 2025 Astro AI. Made with <i class="fas fa-heart"></i> by <a href="#">Kha Luoi Code</a>
             </p>
         </div>
     </footer>
