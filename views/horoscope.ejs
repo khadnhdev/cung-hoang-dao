@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự Đoán Cung Hoàng Đạo | <%= zodiacSign %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1><i class="fas fa-moon"></i> Dự Đoán Cung Hoàng Đạo AI</h1>
+            <p class="subtitle">Kết quả phân tích cho <%= zodiacSign %></p>
+        </header>
+
+        <div class="card result-card fade-in">
+            <div class="card-header">
+                <i class="fas fa-star"></i>
+                <h2><%= zodiacSign %></h2>
+                <p class="subtitle">Ngày sinh: <%= birthDate %></p>
+            </div>
+
+            <div class="reading-content">
+                <div class="reading-section personality">
+                    <h3><i class="fas fa-user"></i> Tính Cách</h3>
+                    <div class="result-content personality-content"></div>
+                </div>
+
+                <div class="reading-section career">
+                    <h3><i class="fas fa-briefcase"></i> Sự Nghiệp</h3>
+                    <div class="result-content career-content"></div>
+                </div>
+
+                <div class="reading-section love">
+                    <h3><i class="fas fa-heart"></i> Tình Cảm</h3>
+                    <div class="result-content love-content"></div>
+                </div>
+
+                <div class="reading-section finance">
+                    <h3><i class="fas fa-coins"></i> Tài Chính</h3>
+                    <div class="result-content finance-content"></div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="/" class="btn-gradient">
+                    <i class="fas fa-arrow-left"></i> Xem Lại
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reading = `<%- reading.replace(/'/g, "\\'").replace(/\n/g, '\\n') %>`;
+            const sections = reading.split('\n\n');
+            
+            sections.forEach(section => {
+                if (section.toLowerCase().includes('tính cách:')) {
+                    document.querySelector('.personality-content').innerHTML = 
+                        section.replace('Tính cách:', '').trim();
+                } 
+                else if (section.toLowerCase().includes('sự nghiệp:')) {
+                    document.querySelector('.career-content').innerHTML = 
+                        section.replace('Sự nghiệp:', '').trim();
+                } 
+                else if (section.toLowerCase().includes('tình cảm:')) {
+                    document.querySelector('.love-content').innerHTML = 
+                        section.replace('Tình cảm:', '').trim();
+                } 
+                else if (section.toLowerCase().includes('tài chính:')) {
+                    document.querySelector('.finance-content').innerHTML = 
+                        section.replace('Tài chính:', '').trim();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

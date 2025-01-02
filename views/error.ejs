@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lỗi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="stars-container">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+    
+    <div class="container">
+        <header class="app-header">
+            <h1><i class="fas fa-exclamation-triangle"></i> Đã xảy ra lỗi</h1>
+        </header>
+
+        <div class="card error-card">
+            <div class="card-header">
+                <i class="fas fa-bug"></i>
+                <h2>Chi tiết lỗi</h2>
+            </div>
+            <div class="error-content">
+                <p><%= error %></p>
+            </div>
+            <div class="actions">
+                <a href="/" class="btn-gradient">
+                    <i class="fas fa-arrow-left"></i> Quay Lại Trang Chủ
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html> 

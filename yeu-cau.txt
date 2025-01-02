@@ -1,0 +1,11 @@
+a. Dự Đoán Cung Hoàng Đạo Cá Nhân:
+Người dùng nhập thông tin cơ bản (ngày, tháng, năm sinh) để xác định cung hoàng đạo.
+AI đưa ra dự đoán về tính cách, sở thích, và các yếu tố ảnh hưởng dựa trên cung hoàng đạo của người dùng.
+Có thể kết hợp thêm yếu tố tử vi phương Đông (Can Chi) để tăng độ chính xác.
+b. Tử Vi Hàng Ngày/Tháng/Năm:
+AI tự động tạo dự đoán về tài chính, tình cảm, sức khỏe, công việc theo từng ngày, tháng, hoặc năm dựa trên thuật toán phân tích dữ liệu tử vi và lịch sử cung hoàng đạo.
+c. Tính Toán Độ Hợp Nhau (Compatibility Test):
+Cho phép người dùng nhập thông tin của mình và người khác để kiểm tra mức độ hợp nhau dựa trên cung hoàng đạo.
+AI phân tích và đưa ra lời khuyên cho mối quan hệ (bạn bè, tình yêu, đối tác kinh doanh).
+d. Gợi Ý Quyết Định Theo Cung Hoàng Đạo:
+AI tư vấn cho người dùng về các quyết định (chọn nghề nghiệp, đầu tư, mối quan hệ) dựa trên tính cách cung hoàng đạo và dữ liệu cá nhân.

@@ -1,0 +1,21 @@
+{
+  "name": "zodiac-app",
+  "version": "1.0.0",
+  "description": "Ứng dụng dự đoán cung hoàng đạo với Gemini API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.1.3",
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "sqlite3": "^5.1.7",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+} 

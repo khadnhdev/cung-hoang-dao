@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Độ Hợp | <%= sign1 %> & <%= sign2 %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1><i class="fas fa-heart"></i> Phân Tích Độ Hợp</h1>
+            <p class="subtitle"><%= sign1 %> <i class="fas fa-arrows-alt-h"></i> <%= sign2 %></p>
+        </header>
+
+        <div class="card result-card fade-in">
+            <div class="card-header">
+                <i class="fas fa-magic"></i>
+                <h2>Kết Quả Phân Tích</h2>
+            </div>
+
+            <div class="reading-content">
+                <div class="reading-section love">
+                    <h3><i class="fas fa-heart"></i> Tình Cảm</h3>
+                    <div class="result-content love-content"></div>
+                </div>
+
+                <div class="reading-section friendship">
+                    <h3><i class="fas fa-users"></i> Bạn Bè</h3>
+                    <div class="result-content friendship-content"></div>
+                </div>
+
+                <div class="reading-section work">
+                    <h3><i class="fas fa-briefcase"></i> Công Việc</h3>
+                    <div class="result-content work-content"></div>
+                </div>
+
+                <div class="reading-section advice">
+                    <h3><i class="fas fa-comment-dots"></i> Lời Khuyên</h3>
+                    <div class="result-content advice-content"></div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="/" class="btn-gradient">
+                    <i class="fas fa-arrow-left"></i> Thử Lại
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const result = `<%- result.replace(/'/g, "\\'").replace(/\n/g, '\\n') %>`;
+            const sections = result.split('\n\n');
+            
+            sections.forEach(section => {
+                if (section.toLowerCase().includes('tình cảm:')) {
+                    document.querySelector('.love-content').innerHTML = 
+                        section.replace('Tình cảm:', '').trim();
+                } 
+                else if (section.toLowerCase().includes('bạn bè:')) {
+                    document.querySelector('.friendship-content').innerHTML = 
+                        section.replace('Bạn bè:', '').trim();
+                } 
+                else if (section.toLowerCase().includes('công việc:')) {
+                    document.querySelector('.work-content').innerHTML = 
+                        section.replace('Công việc:', '').trim();
+                } 
+                else if (section.toLowerCase().includes('lời khuyên:')) {
+                    document.querySelector('.advice-content').innerHTML = 
+                        section.replace('Lời khuyên:', '').trim();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

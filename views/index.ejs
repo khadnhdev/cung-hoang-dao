@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám Phá Cung Hoàng Đạo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Đang phân tích...</div>
+        </div>
+    </div>
+    
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-moon"></i>
+                <span>Astro AI</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/" class="active"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                <li><a href="#daily"><i class="fas fa-calendar-day"></i> Dự Đoán Hôm Nay</a></li>
+                <li><a href="#horoscope"><i class="fas fa-star"></i> Xem Cung</a></li>
+                <li><a href="#compatibility"><i class="fas fa-heart"></i> Xem Độ Hợp</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="stars-container">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+    
+    <div class="container">
+        <header class="app-header">
+            <h1><i class="fas fa-moon"></i> Khám Phá Vũ Trụ Hoàng Đạo</h1>
+            <p class="subtitle">Khám phá bí ẩn về con người và vận mệnh của bạn</p>
+        </header>
+
+        <div id="daily" class="daily-horoscopes section">
+            <h2 class="section-title">Dự Đoán Hôm Nay</h2>
+            <div class="horoscope-grid">
+                <% Object.entries(dailyPredictions).forEach(([sign, prediction]) => { %>
+                    <div class="horoscope-card fade-in">
+                        <div class="horoscope-header">
+                            <span class="zodiac-symbol"><%- getZodiacSymbol(sign) %></span>
+                            <h3><%= sign %></h3>
+                        </div>
+                        <div class="horoscope-content">
+                            <% 
+                            const sections = prediction.split('\n\n');
+                            sections.forEach(section => {
+                                if (section.toLowerCase().includes('tổng quan:')) {
+                            %>
+                                <p class="overview"><%= section.replace('Tổng quan:', '').trim() %></p>
+                            <% }
+                            }); %>
+                            <button class="btn-details" onclick="showDetails('<%= sign %>')">
+                                Xem chi tiết
+                            </button>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+        <div id="horoscope" class="card-container section">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-star"></i>
+                    <h2>Xem Cung Hoàng Đạo</h2>
+                </div>
+                <form action="/horoscope" method="POST" class="zodiac-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-day"></i> Ngày sinh</label>
+                        <input type="number" name="day" min="1" max="31" required placeholder="Ngày">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-alt"></i> Tháng sinh</label>
+                        <input type="number" name="month" min="1" max="12" required placeholder="Tháng">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> Năm sinh</label>
+                        <input type="number" name="year" min="1900" max="2024" required placeholder="Năm">
+                    </div>
+                    <button type="submit" class="btn-gradient">
+                        <i class="fas fa-search"></i> Xem Dự Đoán
+                    </button>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-heart"></i>
+                    <h2>Kiểm Tra Độ Hợp</h2>
+                </div>
+                <form action="/compatibility" method="POST" class="compatibility-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Cung hoàng đạo của bạn</label>
+                        <select name="sign1" required class="zodiac-select">
+                            <option value="">Chọn cung hoàng đạo</option>
+                            <option value="Bạch Dương">♈ Bạch Dương (21/3 - 19/4)</option>
+                            <option value="Kim Ngưu">♉ Kim Ngưu (20/4 - 20/5)</option>
+                            <option value="Song Tử">♊ Song Tử (21/5 - 21/6)</option>
+                            <option value="Cự Giải">♋ Cự Giải (22/6 - 22/7)</option>
+                            <option value="Sư Tử">♌ Sư Tử (23/7 - 22/8)</option>
+                            <option value="Xử Nữ">♍ Xử Nữ (23/8 - 22/9)</option>
+                            <option value="Thiên Bình">♎ Thiên Bình (23/9 - 22/10)</option>
+                            <option value="Bọ Cạp">♏ Bọ Cạp (23/10 - 21/11)</option>
+                            <option value="Nhân Mã">♐ Nhân Mã (22/11 - 21/12)</option>
+                            <option value="Ma Kết">♑ Ma Kết (22/12 - 19/1)</option>
+                            <option value="Bảo Bình">♒ Bảo Bình (20/1 - 18/2)</option>
+                            <option value="Song Ngư">♓ Song Ngư (19/2 - 20/3)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user-friends"></i> Cung hoàng đạo đối phương</label>
+                        <select name="sign2" required class="zodiac-select">
+                            <option value="">Chọn cung hoàng đạo</option>
+                            <option value="Bạch Dương">♈ Bạch Dương (21/3 - 19/4)</option>
+                            <option value="Kim Ngưu">♉ Kim Ngưu (20/4 - 20/5)</option>
+                            <option value="Song Tử">♊ Song Tử (21/5 - 21/6)</option>
+                            <option value="Cự Giải">♋ Cự Giải (22/6 - 22/7)</option>
+                            <option value="Sư Tử">♌ Sư Tử (23/7 - 22/8)</option>
+                            <option value="Xử Nữ">♍ Xử Nữ (23/8 - 22/9)</option>
+                            <option value="Thiên Bình">♎ Thiên Bình (23/9 - 22/10)</option>
+                            <option value="Bọ Cạp">♏ Bọ Cạp (23/10 - 21/11)</option>
+                            <option value="Nhân Mã">♐ Nhân Mã (22/11 - 21/12)</option>
+                            <option value="Ma Kết">♑ Ma Kết (22/12 - 19/1)</option>
+                            <option value="Bảo Bình">♒ Bảo Bình (20/1 - 18/2)</option>
+                            <option value="Song Ngư">♓ Song Ngư (19/2 - 20/3)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-gradient">
+                        <i class="fas fa-magic"></i> Xem Độ Hợp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="horoscopeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        // Truyền dữ liệu từ server xuống client
+        const dailyPredictions = <%- JSON.stringify(dailyPredictions) %>;
+    </script>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo">
+                    <i class="fas fa-moon"></i>
+                    Astro AI
+                </span>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <p class="copyright">
+                &copy; 2024 Astro AI. Made with <i class="fas fa-heart"></i> by <a href="#">Your Name</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html> 
